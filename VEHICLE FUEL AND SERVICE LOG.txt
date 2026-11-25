@@ -1,0 +1,89 @@
+#include <stdio.h>
+
+int main()
+{
+    int odometer[50];
+    float litres[50];
+    int count = 0;
+    int choice, i, sno;
+
+    while (1)
+    {
+        printf("\n");
+        printf("VEHICLE FUEL AND SERVICE LOG\n");
+        printf("1. Add Fuel Fill-up\n");
+        printf("2. View All Fill-ups\n");
+        printf("3. Search Fill-up by S.No.\n");
+        printf("4. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                if (count < 50)
+                {
+                    printf("Enter odometer reading: ");
+                    scanf("%d", &odometer[count]);
+
+                    printf("Enter litres of fuel: ");
+                    scanf("%f", &litres[count]);
+
+                    count++;
+
+                    printf("Record added successfully!\n");
+                }
+                else
+                {
+                    printf("Record limit reached!\n");
+                }
+                break;
+
+            case 2:
+                if (count == 0)
+                {
+                    printf("No records found!\n");
+                }
+                else
+                {
+                    printf("\nS.No.\tOdometer\tLitres\n");
+
+                    for (i = 0; i < count; i++)
+                    {
+                        printf("%d\t%d\t\t%.2f\n",
+                        i + 1, odometer[i], litres[i]);
+                    }
+                }
+                break;
+
+            case 3:
+                printf("Enter S.No. to search: ");
+                scanf("%d", &sno);
+
+                if (sno >= 1 && sno <= count)
+                {
+                    printf("Record Found!\n");
+                    printf("S.No.: %d\n", sno);
+                    printf("Odometer Reading: %d\n",
+                    odometer[sno - 1]);
+                    printf("Litres: %.2f\n",
+                    litres[sno - 1]);
+                }
+                else
+                {
+                    printf("Record not found!\n");
+                }
+                break;
+
+            case 4:
+                printf("Exiting program...\n");
+                return 0;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
